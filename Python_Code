@@ -1,0 +1,184 @@
+# Import packages
+import yfinance as yf
+import numpy as np
+from scipy.stats import norm
+import pandas as pd
+import matplotlib.pyplot as plt
+import pandas as pd
+import math
+
+# Set stock ticker 
+ticker = "^NDX"
+tk = yf.Ticker(ticker)
+
+# Get stock data for the past year
+end_date = pd.to_datetime('2026-05-19')
+start_date = end date - pd.DateOffset(years=1)
+stock_data = yf.download(ticker, start=start_date, end=end_date)
+
+#Select Expiry Date
+expiries = list(yf.Ticker(ticker).options)
+today = pd.Timestamp.today().normalize()
+
+for i, expiry in enumerate(expiries):
+    if pd.to_datetime(expiry).normalize() <= today:
+        expiries[i] = pd.NA
+        
+expiries = [x for x in expiries if pd.notna(x)]
+print(expiries)
+print(expiries)
+print(stock_data.columns)
+
+# Flatten the MultiIndex headers into clean, single-string names
+stock_data.columns = [
+    f"{col[0]}_{col[1]}" if col[1] else col[0] 
+    for col in stock_data.columns
+]
+
+#stock_data["Adj_Close_AAPL"]=np.array(stock_data["Close_AAPL"], dtype=float) - np.array(stock_data["Dividends_AAPL"], dtype=float)
+stock_data["Adj_Close_^NDX"]=np.array(stock_data["Close_^NDX"], dtype=float)
+
+# Print the new names to verify existence of columns 
+print(stock_data.columns)
+
+# Calculate historical volatility
+returns = stock_data['Adj_Close_^NDX'].pct_change().dropna()
+volatility = returns.std() 
+
+# Set risk-free interest rate for their choice of portfolio within period till maturity
+#R: Nominal risk free rate of treasury bonds of different maturity date on 19/05/2026
+R = ["0.0365","0.0365","0.0365","0.0365","0.0374","0.0375","0.0379","0.0404","0.0411"]
+#M: Maturity time of treasury bond
+M = ["31","46","61","92","122","183","365","730","1096"]
+T=[]
+
+N=np.zeros((len(expiries), len(M)))
+
+for expiry in expiries: 
+    # Time to expiration
+    t = (pd.to_datetime(expiry) - pd.to_datetime('2026-05-19')).days     T.append(t)
+
+tp=np.zeros(len(T))
+for i in range(len(M) - 1, -1, -1):
+    # Construct N (number of bonds for each M)
+    n = np.floor((pd.to_numeric(T)-tp)/pd.to_numeric(M[i]))
+    N[:,i]=n
+    tp=n
+print("Matrix N:\n", N)
+
+kk=np.prod((np.ones(len(R)) + pd.to_numeric(R, errors='coerce'))**N,axis=1)
+#Adjusted risk free rate based on different maturity dates of NDX options
+r1=kk - np.ones(len(kk))
+print(r1)
+
+# Map expiry strings directly to their computed composite interest rate
+r = dict(zip(expiries, r1))
+CO = []
+K = []
+Premium = []
+
+for expiry in expiries:
+
+    # Time to expiration
+    T = (pd.to_datetime(expiry) - pd.to_datetime('today')).days
+    if T <= 0: 
+            continue
+    
+    # Get option chain
+    option_chain = yf.Ticker(ticker).option_chain(expiry)
+
+    # Calls 
+    calls = option_chain.calls.sort_values(by='lastPrice')
+
+    # Conservative options
+    conservative_calls = calls[calls["inTheMoney"] == True].tail(5)
+   
+    # Current stock price
+    S0 = stock_data["Adj_Close_^NDX"].iloc[-1]
+
+    # Find ATM strike
+    calls["diff"] = abs(calls["strike"] - S0)
+    atm_call = calls.sort_values("diff").iloc[0]
+
+    K1 = atm_call["strike"]
+    P1 = atm_call["lastPrice"]
+
+    # Black-Scholes
+    d1 = (np.log(S0/K1) + (r[expiry] + 0.5*volatility**2)*T) / (volatility*np.sqrt(T))
+    d2 = d1 - volatility*np.sqrt(T)
+
+    # Call price
+    C = S0*norm.cdf(d1) - K1*np.exp(-r[expiry]*T)*norm.cdf(d2)
+
+    print(f"Expiry: {expiry} | Call Price: ${float(C):.3f} | Strike Price: {K1} | Last Price: ${float(P1):.3f}")
+
+    CO.append(C)
+    K.append(K1)
+    Premium.append(P1)
+
+
+#Choose suitable call option 
+DC = pd.to_numeric(Premium) -  pd.to_numeric(CO) # Actual Premium - Fair value>0: the option overvalues, vice versa
+
+#Overall cost: Prefer the one with lowest cost
+Cost = DC+ pd.to_numeric(K)
+
+plt.figure(figsize=(12, 6))
+
+# Main plots
+plt.plot(expiries, DC,
+         marker='o',
+         linestyle='-',
+         color='b',
+         linewidth=2,
+         label='DC')
+
+plt.plot(expiries, Cost,
+         marker='o',
+         linestyle='-',
+         color='r',
+         linewidth=2,
+         label='Cost')
+
+# Find minimum points
+dc_min_idx = np.argmin(DC)
+cost_min_idx = np.argmin(Cost)
+
+# Plot minimum points
+plt.scatter(expiries[dc_min_idx], DC[dc_min_idx],
+            color='g', s=120, marker='x')
+
+plt.scatter(expiries[cost_min_idx], Cost[cost_min_idx],
+            color='purple', s=120, marker='x')
+
+# Annotate minimum values
+plt.annotate(
+    f"Min DC = {DC[dc_min_idx]:.2f}",
+    (expiries[dc_min_idx], DC[dc_min_idx]),
+    textcoords="offset points",
+    xytext=(10,10),
+    ha='left',
+    color='g'
+)
+
+plt.annotate(
+    f"Min Cost = {Cost[cost_min_idx]:.2f}",
+    (expiries[cost_min_idx], Cost[cost_min_idx]),
+    textcoords="offset points",
+    xytext=(10,-15),
+    ha='left',
+    color='purple'
+)
+
+plt.title(f"Option Value Difference & Cost ({ticker})", fontsize=14)
+plt.xlabel("Option Expiry Dates", fontsize=12)
+plt.ylabel("Value Difference ($)", fontsize=12)
+
+plt.xticks(rotation=45)
+
+plt.grid(True, linestyle='--', alpha=0.6)
+
+plt.legend()
+
+plt.tight_layout()
+plt.show()
