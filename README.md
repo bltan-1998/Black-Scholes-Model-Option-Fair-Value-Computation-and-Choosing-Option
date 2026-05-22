@@ -2,7 +2,7 @@
 
 # NDX Call Option Selector — Black-Scholes Model
 
-This project applies the **Black-Scholes model** to evaluate and select the most suitable European call option on the **NASDAQ-100 Index (^NDX)**, based on real market data fetched via `yfinance`.
+This project applies the **Black-Scholes model** to evaluate and select the most suitable European call option on the **NASDAQ-100 Index (^NDX)** based on consumer's preference (Strike price as close as current price), based on real market data fetched via `yfinance`.
 
 -----
 
@@ -19,10 +19,15 @@ This project applies the **Black-Scholes model** to evaluate and select the most
 
 ## Assumptions
 
-- **European-style options** (exercise at expiry only)
+- **Lognormal distribution**: NDX price follows a lognormal distribution based on the principle that asset prices cannot take a negative value; they are bounded by zero.
+- NDX market follows **random walk**, **frictionless market**
+- NDX return follows **normal distribution**,implying constant market  volatility constant over time.
+- **European-style options** (exercise at maturity date only)
 - **No dividends** paid on the underlying
+-  **No arbitrage**
 - Volatility estimated from 1 year of daily log returns (historical, not implied)
 - Risk-free rate constructed from US Treasury nominal rates as of **19 May 2026**
+- Buyer wishes **strike price** of chosen call option to be **as close as current price as possible**
 
 -----
 
@@ -60,7 +65,7 @@ The script will print each expiry’s theoretical call price vs market last pric
 |--------|---------------------------------------------------------------------------|
 |`DC > 0`|Market premium exceeds fair value → option is **overpriced**               |
 |`DC < 0`|Market premium is below fair value → option is **underpriced**             |
-|`Cost`  |`DC + Strike` — a combined measure of total outlay; **prefer lower values**|
+|`Cost`  |`Premium + Strike` — a combined measure of total outlay; **prefer lower values**|
 
 -----
 
