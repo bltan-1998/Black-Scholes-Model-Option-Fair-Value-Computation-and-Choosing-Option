@@ -13,7 +13,7 @@ This project applies the **Black-Scholes model** to evaluate and select the most
 1. **Constructs a composite risk-free interest rate** for each expiry by combining US Treasury bond rates across multiple tenors (1M to 3Y), weighted by the number of bond periods that fit within the time to expiration.
 1. **Applies the Black-Scholes formula** to compute the theoretical fair value of the at-the-money (ATM) call for each expiry.
 1. **Computes DC** (market premium minus fair value) to identify overpriced vs underpriced options.
-1. **Plots DC and total investment cost** (DC + strike price) across all expiries to help select the best contract.
+1. **Plots DC and total investment cost** (Premium + strike price) across all expiries to help select the best contract.
 
 -----
 
