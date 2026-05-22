@@ -74,17 +74,17 @@ The script will print each expiry’s theoretical call price vs market last pric
 
 Treasury rates (as of 19/05/2026) are mapped to the following tenors:
 
-i |Tenor (days)|Rate |
-  |------------|-----|
-1 |31          |3.65%|
-2 |46          |3.65%|
-3 |61          |3.65%|
-4 |92          |3.65%|
-5 |122         |3.74%|
-6 |183         |3.75%|
-7 |365         |3.79%|
-8 |730         |4.04%|
-9 |1096        |4.11%|
+|i |Tenor (days)|Rate |
+|--|------------|-----|
+|1 |31          |3.65%|
+|2 |46          |3.65%|
+|3 |61          |3.65%|
+|4 |92          |3.65%|
+|5 |122         |3.74%|
+|6 |183         |3.75%|
+|7 |365         |3.79%|
+|8 |730         |4.04%|
+|9 |1096        |4.11%|
 
 For each option expiry, the composite rate is computed as the product of `(1 + r_i)^n_i` across all tenors that fit within the time to expiration, then converted to a single effective rate. r_i is the rate of treasury bond corresponds to ith tenor. n_i is number of treasury bond with ith tenor.
 
