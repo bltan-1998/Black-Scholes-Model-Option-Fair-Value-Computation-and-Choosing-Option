@@ -93,8 +93,9 @@ For each option expiry, the composite rate is computed as the product of `(1 + r
 ## Results
 
 1) Risk Free Rate, r
+   
 | NDX Call Option Maturity Date | Risk Free Rate |
-|---|---:|
+|-------------------------------|---------------:|
 | 2026-05-26 | 0.000000 |
 | 2026-05-27 | 0.000000 |
 | 2026-05-28 | 0.000000 |
