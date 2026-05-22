@@ -139,39 +139,11 @@ For each option expiry, the composite rate is computed as the product of `(1 + r
 | 2029-12-21 | 89.819073 |
 
 2) NDX Call Option Information
-Expiry: 2026-05-26 | Call Price: $211.232 | Strike Price: 29350.0 | Last Price: $213.770
-Expiry: 2026-05-27 | Call Price: $243.341 | Strike Price: 29350.0 | Last Price: $285.560
-Expiry: 2026-05-28 | Call Price: $271.629 | Strike Price: 29350.0 | Last Price: $338.840
-Expiry: 2026-05-29 | Call Price: $297.204 | Strike Price: 29350.0 | Last Price: $360.140
-Expiry: 2026-06-01 | Call Price: $363.171 | Strike Price: 29350.0 | Last Price: $418.350
-Expiry: 2026-06-02 | Call Price: $358.311 | Strike Price: 29400.0 | Last Price: $303.400
-Expiry: 2026-06-03 | Call Price: $480.039 | Strike Price: 29200.0 | Last Price: $443.000
-Expiry: 2026-06-04 | Call Price: $470.273 | Strike Price: 29250.0 | Last Price: $487.400
-Expiry: 2026-06-05 | Call Price: $411.426 | Strike Price: 29400.0 | Last Price: $538.870
-Expiry: 2026-06-08 | Call Price: $458.697 | Strike Price: 29400.0 | Last Price: $789.630
-Expiry: 2026-06-09 | Call Price: $473.452 | Strike Price: 29400.0 | Last Price: $676.800
-Expiry: 2026-06-10 | Call Price: $537.140 | Strike Price: 29300.0 | Last Price: $612.000
-Expiry: 2026-06-11 | Call Price: $551.044 | Strike Price: 29300.0 | Last Price: $690.800
-Expiry: 2026-06-12 | Call Price: $564.588 | Strike Price: 29300.0 | Last Price: $653.500
-Expiry: 2026-06-15 | Call Price: $507.618 | Strike Price: 29500.0 | Last Price: $503.380
-Expiry: 2026-06-16 | Call Price: $566.445 | Strike Price: 29400.0 | Last Price: $632.730
-Expiry: 2026-06-17 | Call Price: $578.553 | Strike Price: 29400.0 | Last Price: $861.100
-Expiry: 2026-06-18 | Call Price: $614.671 | Strike Price: 29350.0 | Last Price: $637.800
-Expiry: 2026-06-22 | Call Price: $5.471 | Strike Price: 33500.0 | Last Price: $6.800
-Expiry: 2026-06-26 | Call Price: $20857.877 | Strike Price: 29400.0 | Last Price: $766.170
-Expiry: 2026-06-30 | Call Price: $22012.454 | Strike Price: 29400.0 | Last Price: $555.000
-Expiry: 2026-07-10 | Call Price: $28369.790 | Strike Price: 35000.0 | Last Price: $9.400
-Expiry: 2026-07-17 | Call Price: $28864.286 | Strike Price: 29400.0 | Last Price: $1161.860
-Expiry: 2026-07-31 | Call Price: $29356.565 | Strike Price: 29400.0 | Last Price: $567.500
-Expiry: 2026-08-21 | Call Price: $29357.242 | Strike Price: 29500.0 | Last Price: $1263.680
-...
-Expiry: 2027-09-17 | Call Price: $29357.270 | Strike Price: 26000.0 | Last Price: $3459.950
-Expiry: 2027-12-17 | Call Price: $29357.270 | Strike Price: 29500.0 | Last Price: $2039.960
-Expiry: 2028-12-15 | Call Price: $29357.270 | Strike Price: 29500.0 | Last Price: $5690.000
-Expiry: 2029-12-21 | Call Price: $29357.270 | Strike Price: 29500.0 | Last Price: $5098.900
+<img width="1189" height="590" alt="image" src="https://github.com/user-attachments/assets/f1a266c9-554e-4187-9838-59882c58e3a0" />
+Figure 1: Black-Scholes Call Option Price (Fair Value), Strike Price and Premium of NDX
 
 <img width="1189" height="590" alt="image" src="https://github.com/user-attachments/assets/9e462e32-deaf-4957-a643-cc769f7500f2" />
-Figure 1: In this figure, it is typically desirable to choose the call option with maturity date on 2027-06-17 due to its lowest overall cost and negative DC (undervalued premium), despite not being the lowest,  which potrays potential opportunities for higher returns, by assuming it will rise beyond the strike price. Besides, the buyer may lose its premium relatively lower than fair value if he decided not to exercise the option in the future. 
+Figure 2: In this figure, it is typically desirable to choose the call option with maturity date on 2027-06-17 due to its lowest overall cost and negative DC (undervalued premium), despite not being the lowest,  which potrays potential opportunities for higher returns, by assuming it will rise beyond the strike price. Besides, the buyer may lose its premium relatively lower than fair value if he decided not to exercise the option in the future. 
 
 -----
 
