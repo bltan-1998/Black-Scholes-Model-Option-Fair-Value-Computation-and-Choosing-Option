@@ -26,7 +26,7 @@ This project applies the **Black-Scholes model** to evaluate and select the most
 - **No dividends** paid on the underlying
 -  **No arbitrage**
 - Volatility estimated from 1 year of daily log returns (historical, not implied)
-- Risk-free rate constructed from US Treasury nominal rates as of **19 May 2026**
+- Risk-free rate constructed from US Treasury nominal rates as of **19 May 2026** from [2]
 - Buyer wishes **strike price** of chosen call option to be **as close as current price as possible**
 - Buyer has positive outlook towards NDX performance in 5 years
 
@@ -149,8 +149,8 @@ Figure 2: In this figure, it is typically desirable to choose the call option wi
 
 ## References
 
-1) https://corporatefinanceinstitute.com/resources/derivatives/black-scholes-merton-model/
-2) https://tradingeconomics.com/united-states/government-bond-yield
-3) https://www.asx.com.au/content/dam/asx/investors/investment-tools-and-resources/online-courses/options/options-course-3.pdf
-4) https://www.columbia.edu/~mh2078/FoundationsFE/BlackScholes.pdf
+[1] https://corporatefinanceinstitute.com/resources/derivatives/black-scholes-merton-model/
+[2] https://tradingeconomics.com/united-states/government-bond-yield
+[3] https://www.asx.com.au/content/dam/asx/investors/investment-tools-and-resources/online-courses/options/options-course-3.pdf
+[4] https://www.columbia.edu/~mh2078/FoundationsFE/BlackScholes.pdf
 
