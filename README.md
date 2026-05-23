@@ -1,6 +1,4 @@
-(# Black-Scholes-Model-Option-Fair-Value-Computation-and-Choosing-Option
-
-# NDX Call Option Selector — Black-Scholes Model
+# Black -Scholes Model: NASDAQ-100 (^NDX or NDX) European Call Option Price Evaluation 
 
 This project applies the **Black-Scholes model** to evaluate and select the most suitable European call option on the **NASDAQ-100 Index (^NDX)** based on consumer's preference (Strike price as close as current price), based on real market data fetched via `yfinance`.
 
@@ -10,7 +8,7 @@ This project applies the **Black-Scholes model** to evaluate and select the most
 
 1. **Downloads 1 year of NDX historical price data** to compute annualised historical volatility.
 1. **Fetches all available option expiry dates** from Yahoo Finance, filtering out expired contracts.
-1. **Constructs a composite risk-free interest rate** for each expiry by combining US Treasury bond rates across multiple tenors (1M to 3Y), weighted by the number of bond periods that fit within the time to expiration.
+1. **Constructs a composite risk-free interest rate** for each expiry weighted by the number of bond periods that fit within the time to expiration. Uses US Treasury bond rates across multiple tenors (1month to 3years) if call option days to maturity falling in range of the stated bond's tenor and yield from holding cash (0%) if call option days to maturity is less than 31 days. 
 1. **Applies the Black-Scholes formula** to compute the theoretical fair value of the at-the-money (ATM) call for each expiry.
 1. **Computes DC** (market premium minus fair value) to identify overpriced vs underpriced options.
 1. **Plots DC and total investment cost** (Premium + strike price) across all expiries to help select the best contract.
