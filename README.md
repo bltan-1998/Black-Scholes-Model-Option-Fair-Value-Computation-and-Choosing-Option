@@ -142,7 +142,7 @@ For each option expiry, the composite rate is computed as the product of `(1 + r
 <img width="1189" height="590" alt="image" src="https://github.com/user-attachments/assets/f1a266c9-554e-4187-9838-59882c58e3a0" />
 Figure 1: Black-Scholes Call Option Price (Fair Value), Strike Price and Premium of NDX
 
-<img width="1189" height="590" alt="image" src="https://github.com/user-attachments/assets/9e462e32-deaf-4957-a643-cc769f7500f2" />
+[please wait: still amending]
 Figure 2: In this figure, it is typically desirable to choose the call option with maturity date on 2027-06-17 due to its lowest overall cost and negative DC (undervalued premium), despite not being the lowest,  which potrays potential opportunities for higher returns, by assuming it will rise beyond the strike price. Besides, the buyer may lose its premium relatively lower than fair value if he decided not to exercise the option in the future. 
 
 -----
