@@ -6,11 +6,11 @@ This project applies the **Black-Scholes model** to evaluate and select the most
 
 ## What It Does
 
-1. **Downloads 1 year of NDX historical price data** to compute annualised historical volatility.
-1. **Fetches all available option expiry dates** from Yahoo Finance, filtering out expired contracts.
+1. **Downloads 1 year of NDX historical price data starting from 2026-05-19** to compute annualised historical volatility (standard deviation of daily returns based on closing price).
+1. **Fetches all available ^NDX call option expiry dates** from Yahoo Finance, filtering out expired contracts.
 1. **Constructs a composite risk-free interest rate** for each expiry weighted by the number of bond periods that fit within the time to expiration. Uses US Treasury bond rates across multiple tenors (1month to 3years) if call option's days till exercisable date falling in range of the stated bond's tenor and yield from holding cash (0%) if call option's  days till exercisable date is less than 31 days. 
 1. **Applies the Black-Scholes formula** to compute the theoretical fair value of the at-the-money (ATM) call for each expiry.
-1. **Computes DC** (market premium minus fair value) to identify overpriced vs underpriced options.
+1. **Computes DC** (market premium - fair value) to identify overpriced vs underpriced options.
 1. **Plots DC and total investment cost** (market premium + strike price) across all expiries to help select the best contract.
 
 -----
@@ -73,11 +73,9 @@ The script will print each expiry’s theoretical call price vs market last pric
 
 Sigma = Volatility of ^NDX daily returns in past 1 year 
 
-
-
 -----
 
-## Risk-Free Rate Construction
+## Risk-Free Rate (r) Construction
 
 Treasury rates (as of 19/05/2026) and cash holding yield (0%) are mapped to the following tenors:
 
