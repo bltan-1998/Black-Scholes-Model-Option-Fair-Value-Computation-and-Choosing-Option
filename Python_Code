@@ -18,7 +18,7 @@ stock_data = yf.download(ticker, start=start_date, end=end_date)
 
 #Select Expiry Date
 expiries = list(yf.Ticker(ticker).options)
-today = pd.Timestamp.today().normalize()
+today = pd.Timestamp("2026-05-19").normalize()
 
 for i, expiry in enumerate(expiries):
     if pd.to_datetime(expiry).normalize() <= today:
@@ -35,7 +35,6 @@ stock_data.columns = [
     for col in stock_data.columns
 ]
 
-#stock_data["Adj_Close_AAPL"]=np.array(stock_data["Close_AAPL"], dtype=float) - np.array(stock_data["Dividends_AAPL"], dtype=float)
 stock_data["Adj_Close_^NDX"]=np.array(stock_data["Close_^NDX"], dtype=float)
 
 # Print the new names to verify existence of columns 
@@ -48,21 +47,21 @@ volatility = returns.std()
 # Set risk-free interest rate for their choice of portfolio within period till maturity
 #R: Nominal risk free rate of treasury bonds of different maturity date on 19/05/2026
 R = ["0.0365","0.0365","0.0365","0.0365","0.0374","0.0375","0.0379","0.0404","0.0411"]
-#M: Maturity time of treasury bond
+#M: Maturity time of US treasury bond
 M = ["31","46","61","92","122","183","365","730","1096"]
 T=[]
-
 N=np.zeros((len(expiries), len(M)))
 
 for expiry in expiries: 
     # Time to expiration
     t = (pd.to_datetime(expiry) - pd.to_datetime('2026-05-19')).days     T.append(t)
 
+d=T
 tp=np.zeros(len(T))
 for i in range(len(M) - 1, -1, -1):
-    d = pd.to_numeric(T)-np.array(N) @ np.array(M)
     # Construct N (number of bonds for each M)
     N[:,i] = np.floor(d/pd.to_numeric(M[i]))
+    d = pd.to_numeric(T)- ( N @ np.array(M, dtype=float) )
     
 print("Matrix N:\n", N)
 
@@ -77,6 +76,7 @@ CO = []
 K = []
 Premium = []
 
+# Call Option Formula Fair Value Computation
 for expiry in expiries:
 
     # Time to expiration
@@ -89,9 +89,6 @@ for expiry in expiries:
 
     # Calls 
     calls = option_chain.calls.sort_values(by='lastPrice')
-
-    # Conservative options
-    conservative_calls = calls[calls["inTheMoney"] == True].tail(5)
    
     # Current stock price
     S0 = stock_data["Adj_Close_^NDX"].iloc[-1]
@@ -106,8 +103,6 @@ for expiry in expiries:
     # Black-Scholes
     d1 = (np.log(S0/K1) + (r[expiry] + 0.5*volatility**2)*T) / (volatility*np.sqrt(T))
     d2 = d1 - volatility*np.sqrt(T)
-
-    # Call price
     C = S0*norm.cdf(d1) - K1*np.exp(-r[expiry]*T)*norm.cdf(d2)
 
     print(f"Expiry: {expiry} | Call Price: ${float(C):.3f} | Strike Price: {K1} | Last Price: ${float(P1):.3f}")
@@ -117,11 +112,48 @@ for expiry in expiries:
     Premium.append(P1)
 
 
-#Choose suitable call option 
+#Compute DC 
 DC = pd.to_numeric(Premium) -  pd.to_numeric(CO) # Actual Premium - Fair value>0: the option overvalues, vice versa
 
 #Overall cost: Prefer the one with lowest cost
 Cost = DC+ pd.to_numeric(K)
+
+#Plot Fig 1 & 2
+plt.figure(figsize=(12, 6))
+
+plt.plot(expiries, CO,
+         marker='o',
+         linestyle='-',
+         color='b',
+         linewidth=2,
+         label='COFV')
+
+plt.plot(expiries,K,
+         marker='o',
+         linestyle='-',
+         color='g',
+         linewidth=2,
+         label='K')
+
+plt.plot(expiries, Premium,
+         marker='o',
+         linestyle='-',
+         color='r',
+         linewidth=2,
+         label='P')
+
+
+plt.title(f"Call Option Fair Value (COFV), Premium (P), Strike Price (K) of  ({ticker})", fontsize=14)
+plt.xlabel("^NDX Call Option Expiry Dates", fontsize=12)
+
+plt.xticks(rotation=45)
+
+plt.grid(True, linestyle='--', alpha=0.6)
+
+plt.legend()
+
+plt.tight_layout()
+plt.show()
 
 plt.figure(figsize=(12, 6))
 
@@ -138,7 +170,7 @@ plt.plot(expiries, Cost,
          linestyle='-',
          color='r',
          linewidth=2,
-         label='Cost')
+         label='AC')
 
 # Find minimum points
 dc_min_idx = np.argmin(DC)
@@ -170,9 +202,8 @@ plt.annotate(
     color='purple'
 )
 
-plt.title(f"Option Value Difference & Cost ({ticker})", fontsize=14)
-plt.xlabel("Option Expiry Dates", fontsize=12)
-plt.ylabel("Value Difference ($)", fontsize=12)
+plt.title(f"Option Value Difference(DC= K-COFV) & Actual Cost(AC) of Call Option ({ticker})", fontsize=14)
+plt.xlabel("^NDX Call Option Expiry Dates", fontsize=12)
 
 plt.xticks(rotation=45)
 
