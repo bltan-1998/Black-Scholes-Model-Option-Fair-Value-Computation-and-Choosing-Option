@@ -89,7 +89,7 @@ Total days from purchasing date till exercisable date = 1000 days
 Starting date: 2026-05-19
 1000 = [1096(0) + 730(1)+ 365(0) +183(1) + 122(0) + 92(0) + 61(1) + 46(0) + 31(0)]+ 26
 
-So first 974 days will be entitled with (1+0.0411)^1][(1+0.0375)^1][(1+0.0365)^1 -1 of risk free yield, while the last 26 days wull be entitled with 0% of risk free yield. Therefore, the total risk free rate for the call option with days till exercisable date of 1000 days is [(1)(1)(1+0.0411)(1+0.0375)(1+0.0365)]-1
+So first 974 days will be entitled with (1+0.0411)^1][(1+0.0375)^1][(1+0.0365)^1 -1 of risk free yield, while the last 26 days wull be entitled with 0% of risk free yield. Therefore, the total risk free rate for the call option with days till exercisable date of 1000 days is {[(1)(1)(1+0.0411)(1+0.0375)(1+0.0365)]-1}*100%
 
 Risk Free Rate, r 
 | NDX Call Option Maturity Date | Risk Free Rate |
