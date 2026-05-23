@@ -66,7 +66,7 @@ The script will print each expiry’s theoretical call price vs market last pric
 |--------|---------------------------------------------------------------------------|
 |`DC > 0`|Market premium exceeds fair value → option is **overpriced**               |
 |`DC < 0`|Market premium is below fair value → option is **underpriced**             |
-|`Cost`  |`Premium + Strike` — a combined measure of total outlay; **prefer lower values**|
+|`Actual Cost`  |`Premium + Strike` — a combined measure of total outlay; **prefer lower values**|
 
 -----
 
@@ -96,53 +96,54 @@ For each option expiry, the composite rate is computed as the product of `(1 + r
    
 | NDX Call Option Maturity Date | Risk Free Rate |
 |-------------------------------|---------------:|
-| 2026-05-26 | 0.000000 |
-| 2026-05-27 | 0.000000 |
-| 2026-05-28 | 0.000000 |
-| 2026-05-29 | 0.000000 |
-| 2026-06-01 | 0.000000 |
-| 2026-06-02 | 0.000000 |
-| 2026-06-03 | 0.000000 |
-| 2026-06-04 | 0.000000 |
-| 2026-06-05 | 0.000000 |
-| 2026-06-08 | 0.000000 |
-| 2026-06-09 | 0.000000 |
-| 2026-06-10 | 0.000000 |
-| 2026-06-11 | 0.000000 |
-| 2026-06-12 | 0.000000 |
-| 2026-06-15 | 0.000000 |
-| 2026-06-16 | 0.000000 |
-| 2026-06-17 | 0.000000 |
-| 2026-06-18 | 0.000000 |
-| 2026-06-22 | 0.000000 |
-| 2026-06-26 | 0.036500 |
-| 2026-06-30 | 0.036500 |
-| 2026-07-10 | 0.074332 |
-| 2026-07-17 | 0.074332 |
-| 2026-07-31 | 0.154190 |
-| 2026-08-21 | 0.154190 |
-| 2026-08-31 | 0.285243 |
-| 2026-09-18 | 0.285243 |
-| 2026-09-30 | 0.432419 |
-| 2026-10-16 | 0.484702 |
-| 2026-11-20 | 0.538894 |
-| 2026-12-18 | 0.842782 |
-| 2026-12-31 | 0.910043 |
-| 2027-01-15 | 0.979760 |
-| 2027-02-19 | 1.206467 |
-| 2027-03-19 | 1.457001 |
-| 2027-04-16 | 1.735982 |
-| 2027-06-17 | 2.656366 |
-| 2027-09-17 | 3.699318 |
-| 2027-12-17 | 5.737885 |
-| 2028-12-15 | 23.728870 |
-| 2029-12-21 | 89.819073 |
+| 2026-05-26 | 0 % |
+| 2026-05-27 | 0 %|
+| 2026-05-28 | 0 %  |
+| 2026-05-29 | 0 %  |
+| 2026-06-01 | 0 %  |
+| 2026-06-02 | 0 %  |
+| 2026-06-03 | 0 %  |
+| 2026-06-04 | 0 %  |
+| 2026-06-05 | 0 %  |
+| 2026-06-08 | 0 %  |
+| 2026-06-09 | 0 %  |
+| 2026-06-10 | 0 %  |
+| 2026-06-11 | 0 %  |
+| 2026-06-12 | 0 %  |
+| 2026-06-15 | 0 %  |
+| 2026-06-16 | 0 %  |
+| 2026-06-17 | 0 %  |
+| 2026-06-18 | 0 %  |
+| 2026-06-22 | 0 % |
+| 2026-06-26 | 3.65 % |
+| 2026-06-30 | 3.65 % |
+| 2026-07-10 | 3.65 % |
+| 2026-07-17 | 3.65 % |
+| 2026-07-31 | 3.65 % |
+| 2026-08-21 | 3.65 % |
+| 2026-08-31 | 3.65 % |
+| 2026-09-18 | 3.65 % |
+| 2026-09-30 | 3.74 % |
+| 2026-10-16 | 3.74 %  |
+| 2026-11-20 | 7.52651 % |
+| 2026-12-18 | 3.75 % |
+| 2026-12-31 | 7.536875 % |
+| 2027-01-15 | 7.536875 % |
+| 2027-02-19 | 7.536875 % |
+| 2027-03-19 | 7.536875 % |
+| 2027-04-16 | 7.63025 % |
+| 2027-06-17 | 3.79 % |
+| 2027-09-17 | 7.578335 % |
+| 2027-12-17 | 7.682125 % |
+| 2028-12-15 | 7.9415 % |
+| 2029-12-21 | 8.014125 % |
 
 2) NDX Call Option Information
-<img width="1189" height="590" alt="image" src="https://github.com/user-attachments/assets/f1a266c9-554e-4187-9838-59882c58e3a0" />
+   
+<img width="1189" height="590" alt="image" src="https://github.com/user-attachments/assets/9d0f2d0a-4d6b-4ce7-80ca-07a6a02fa9c2" />
 Figure 1: Black-Scholes Call Option Price (Fair Value), Strike Price and Premium of NDX
 
-[please wait: still amending]
+<img width="1186" height="590" alt="image" src="https://github.com/user-attachments/assets/ed27afa1-2506-4958-a66c-5cdeb09a83da" />
 Figure 2: In this figure, it is typically desirable to choose the call option with maturity date on 2027-06-17 due to its lowest overall cost and negative DC (undervalued premium), despite not being the lowest,  which potrays potential opportunities for higher returns, by assuming it will rise beyond the strike price. Besides, the buyer may lose its premium relatively lower than fair value if he decided not to exercise the option in the future. 
 
 -----
