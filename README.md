@@ -149,8 +149,11 @@ Figure 2: In this figure, it is typically desirable to choose the call option wi
 
 ## References
 
-[1] https://corporatefinanceinstitute.com/resources/derivatives/black-scholes-merton-model/
-[2] https://tradingeconomics.com/united-states/government-bond-yield
-[3] https://www.asx.com.au/content/dam/asx/investors/investment-tools-and-resources/online-courses/options/options-course-3.pdf
-[4] https://www.columbia.edu/~mh2078/FoundationsFE/BlackScholes.pdf
+[1]https://corporatefinanceinstitute.com/resources/derivatives/black-scholes-merton-model/
+
+[2]https://tradingeconomics.com/united-states/government-bond-yield
+
+[3]https://www.asx.com.au/content/dam/asx/investors/investment-tools-and-resources/online-courses/options/options-course-3.pdf
+
+[4]https://www.columbia.edu/~mh2078/FoundationsFE/BlackScholes.pdf
 
