@@ -147,6 +147,14 @@ Figure 2: In this figure, it is typically desirable to choose the call option wi
 
 -----
 
+## Discussion
+
+📌 Based on fundamental economics assumption which includes non-satiation, investors prefer enjoying high profit if they can. Therefore, from the assumption of buyers's positive outlook on NDX actual value growth in 5 years, 
+
+🔎📍🔍📝
+
+-----
+
 ## References
 
 [1]https://corporatefinanceinstitute.com/resources/derivatives/black-scholes-merton-model/
