@@ -61,7 +61,7 @@ for expiry in expiries:
 tp=np.zeros(len(T))
 for i in range(len(M) - 1, -1, -1):
     # Construct N (number of bonds for each M)
-    n = np.floor((pd.to_numeric(T)-tp)/pd.to_numeric(M[i]))
+    n = np.floor((pd.to_numeric(T)-（tp*M）)/pd.to_numeric(M[i]))
     N[:,i]=n
     tp=n
 print("Matrix N:\n", N)
