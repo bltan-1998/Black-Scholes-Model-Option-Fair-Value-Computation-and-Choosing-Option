@@ -60,10 +60,10 @@ for expiry in expiries:
 
 tp=np.zeros(len(T))
 for i in range(len(M) - 1, -1, -1):
+    d = pd.to_numeric(T)-np.array(N) @ np.array(M)
     # Construct N (number of bonds for each M)
-    n = np.floor((pd.to_numeric(T)-（tp*M）)/pd.to_numeric(M[i]))
-    N[:,i]=n
-    tp=n
+    N[:,i] = np.floor(d/pd.to_numeric(M[i]))
+    
 print("Matrix N:\n", N)
 
 kk=np.prod((np.ones(len(R)) + pd.to_numeric(R, errors='coerce'))**N,axis=1)
