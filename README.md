@@ -143,6 +143,7 @@ Risk Free Rate, r
 <img width="1189" height="590" alt="image" src="https://github.com/user-attachments/assets/9d0f2d0a-4d6b-4ce7-80ca-07a6a02fa9c2" />
 Figure 1: Black-Scholes Call Option Price (Fair Value), Strike Price and Market Premium of NDX
 
+
 <img width="1186" height="590" alt="image" src="https://github.com/user-attachments/assets/ed27afa1-2506-4958-a66c-5cdeb09a83da" />
 Figure 2: In this figure, it is typically desirable to choose the call option with maturity date on 2027-06-17 due to its lowest overall cost and negative DC (undervalued premium), despite not being the lowest,  which potrays potential opportunities for higher returns, by assuming it will rise beyond the strike price. Besides, the buyer may lose its premium relatively lower than fair value if he decided not to exercise the option in the future. 
 
