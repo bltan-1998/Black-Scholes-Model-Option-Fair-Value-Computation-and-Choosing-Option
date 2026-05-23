@@ -46,15 +46,6 @@ Install with:
 pip install yfinance numpy scipy pandas matplotlib
 ```
 
------
-
-## Usage
-
-```bash
-python ndx_black_scholes.py
-```
-
-The script will print each expiry’s theoretical call price vs market last price, then display a plot.
 
 -----
 
