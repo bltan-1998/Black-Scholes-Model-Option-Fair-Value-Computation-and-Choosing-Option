@@ -1,4 +1,4 @@
-# Black-Scholes-Model-Option-Fair-Value-Computation-and-Choosing-Option
+(# Black-Scholes-Model-Option-Fair-Value-Computation-and-Choosing-Option
 
 # NDX Call Option Selector — Black-Scholes Model
 
@@ -149,11 +149,10 @@ Figure 2: In this figure, it is typically desirable to choose the call option wi
 
 ## Discussion
 
-📌 Based on fundamental economics assumption which includes non-satiation, investors prefer enjoying high profit if they can. Therefore, from the assumption of buyers's positive outlook on NDX actual value growth in 5 years, 
+🔎 Based on fundamental economics assumption which includes non-satiation, investors prefer enjoying high profit if they can. Therefore, from the assumption of buyers's positive outlook on NDX actual value growth in 5 years, the buyer will likely be benefitted from purchasing the option with matirity date on "2026-07-29", which costs the least among all call options with maturity date displayed in figure figure 1&2 along with the lowest strike price it allows the option buyer to exercise from the, gaining opportunities for greater profit if the buyer intend to sell it after the shorting it. Besides, its negative DC value also indicates that as an opportunity to invest as the actual premium is actually lower than the fair value ohtained from Black Scholes call otion pricing model. 
 
-🔎📍🔍📝
 
------
+---
 
 ## References
 
